@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+  <!-- Stylized Hexagon -->
+  <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" stroke="url(#grad)" stroke-width="6" fill="#0c0e17" />
+  <!-- Letter F with code elements -->
+  <text x="35" y="68" font-family="'Outfit', sans-serif" font-size="52" font-weight="900" fill="url(#grad)">F</text>
+  <circle cx="68" cy="35" r="5" fill="#06b6d4" />
+</svg>
