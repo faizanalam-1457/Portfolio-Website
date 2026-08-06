@@ -1,127 +1,100 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Certifications from './components/Certifications';
-import Achievements from './components/Achievements';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
-import Background from './components/Background';
-import Chatbot from './components/Chatbot';
-import InteractiveSystem from './components/InteractiveSystem';
-import LoadingScreen from './components/LoadingScreen';
-import AnimatedSection, { SectionDivider } from './components/AnimatedSection';
+import React, { useState, useEffect } from "react";
+
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+import Projects from "./components/Projects";
+import Education from "./components/Education";
+import Certifications from "./components/Certifications";
+import Achievements from "./components/Achievements";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import CustomCursor from "./components/CustomCursor";
+import Background from "./components/Background";
+import Chatbot from "./components/Chatbot";
+import InteractiveSystem from "./components/InteractiveSystem";
+import LoadingScreen from "./components/LoadingScreen";
+import AnimatedSection, {
+  SectionDivider,
+} from "./components/AnimatedSection";
 
 export default function App() {
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'dark';
-  });
-  const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState("dark");
+  const [loading, setLoading] = useState(false);
 
-  // Toggle theme callback
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', next);
-      return next;
-    });
-  };
-
-  // Sync theme with body data-theme attribute
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
+    document.body.setAttribute("data-theme", theme);
   }, [theme]);
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <>
-      {/* Cinematic Loading Screen */}
-      {loading && (
-        <LoadingScreen onComplete={() => setLoading(false)} />
-      )}
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#111",
+        color: "white",
+        padding: "40px",
+      }}
+    >
+      <h1>✅ React & Vercel are Working</h1>
+      <p>If you can see this page, the deployment is successful.</p>
 
-      {/* Premium Visual Background System */}
-      <Background />
-      
-      {/* Lagging hardware-accelerated custom cursor */}
-      <CustomCursor />
-      
-      {/* Interactive AI Chatbot Resume Assistant */}
-      <Chatbot theme={theme} toggleTheme={toggleTheme} />
+      {/* Uncomment ONE component at a time */}
 
-      {/* Gamified & Interactive Features (Palette, Terminal, Audio, Konami) */}
-      <InteractiveSystem />
+      {/* <Background /> */}
 
-      {/* Main Navigation */}
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      {/* <CustomCursor /> */}
 
-      {/* Main Page Layout */}
-      <main className="relative z-10 w-full">
-        {/* Hero Section */}
-        <Hero />
+      {/* <LoadingScreen onComplete={() => setLoading(false)} /> */}
 
-        <SectionDivider />
+      {/* <Chatbot theme={theme} toggleTheme={toggleTheme} /> */}
 
-        {/* About Section */}
-        <AnimatedSection animation="fadeUp" delay={0.1}>
-          <About />
-        </AnimatedSection>
+      {/* <InteractiveSystem /> */}
 
-        <SectionDivider />
+      {/* <Navbar theme={theme} toggleTheme={toggleTheme} /> */}
 
-        {/* Technical Proficiency Grid */}
-        <AnimatedSection animation="scaleUp" delay={0.1}>
-          <Skills />
-        </AnimatedSection>
+      {/* <Hero /> */}
 
-        <SectionDivider />
+      {/* <SectionDivider /> */}
 
-        {/* Projects Showcase */}
-        <AnimatedSection animation="fadeUp" delay={0.1}>
-          <Projects />
-        </AnimatedSection>
+      {/* <AnimatedSection animation="fadeUp">
+        <About />
+      </AnimatedSection> */}
 
-        <SectionDivider />
+      {/* <AnimatedSection animation="fadeUp">
+        <Skills />
+      </AnimatedSection> */}
 
-        {/* Professional Timeline */}
-        <AnimatedSection animation="fadeLeft" delay={0.1}>
-          <Experience />
-        </AnimatedSection>
+      {/* <AnimatedSection animation="fadeUp">
+        <Projects />
+      </AnimatedSection> */}
 
-        <SectionDivider />
+      {/* <AnimatedSection animation="fadeUp">
+        <Experience />
+      </AnimatedSection> */}
 
-        {/* Education & Certifications Column Grid */}
-        <AnimatedSection animation="fadeUp" delay={0.1}>
-          <section id="education" className="section py-24 relative">
-            <div className="absolute top-[30%] left-[-10%] w-[300px] h-[300px] bg-accent-glow rounded-full blur-[100px] pointer-events-none"></div>
-            <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
-              <Education />
-              <Certifications />
-            </div>
-          </section>
-        </AnimatedSection>
+      {/* <AnimatedSection animation="fadeUp">
+        <Education />
+      </AnimatedSection> */}
 
-        <SectionDivider />
+      {/* <AnimatedSection animation="fadeUp">
+        <Certifications />
+      </AnimatedSection> */}
 
-        {/* Stats & Achievements */}
-        <AnimatedSection animation="scaleUp" delay={0.1}>
-          <Achievements />
-        </AnimatedSection>
+      {/* <AnimatedSection animation="fadeUp">
+        <Achievements />
+      </AnimatedSection> */}
 
-        <SectionDivider />
+      {/* <AnimatedSection animation="fadeUp">
+        <Contact />
+      </AnimatedSection> */}
 
-        {/* Contact Form Sheet */}
-        <AnimatedSection animation="fadeUp" delay={0.1}>
-          <Contact />
-        </AnimatedSection>
-      </main>
-
-      {/* Footer & Back to top button */}
-      <Footer />
-    </>
+      {/* <Footer /> */}
+    </div>
   );
 }
