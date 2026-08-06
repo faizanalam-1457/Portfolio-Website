@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -16,85 +15,113 @@ import Background from "./components/Background";
 import Chatbot from "./components/Chatbot";
 import InteractiveSystem from "./components/InteractiveSystem";
 import LoadingScreen from "./components/LoadingScreen";
-import AnimatedSection, {
-  SectionDivider,
-} from "./components/AnimatedSection";
+import AnimatedSection, { SectionDivider } from "./components/AnimatedSection";
 
 export default function App() {
-  const [theme, setTheme] = useState("dark");
-  const [loading, setLoading] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
+  const [loading, setLoading] = useState(true);
 
+  // Toggle theme callback
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", next);
+      return next;
+    });
+  };
+
+  // Sync theme with body data-theme attribute
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  };
-
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#111",
-        color: "white",
-        padding: "40px",
-      }}
-    >
-      <h1>✅ React & Vercel are Working</h1>
-      <p>If you can see this page, the deployment is successful.</p>
+    <>
+      {/* Cinematic Loading Screen */}
+      {loading && (
+        <LoadingScreen onComplete={() => setLoading(false)} />
+      )}
 
-      {/* Uncomment ONE component at a time */}
+      {/* Premium Visual Background System */}
+      <Background />
+      
+      {/* Lagging hardware-accelerated custom cursor */}
+      <CustomCursor />
+      
+      {/* Interactive AI Chatbot Resume Assistant */}
+      <Chatbot theme={theme} toggleTheme={toggleTheme} />
 
-      {/* <Background /> */}
+      {/* Gamified & Interactive Features (Palette, Terminal, Audio, Konami) */}
+      <InteractiveSystem />
 
-      {/* <CustomCursor /> */}
+      {/* Main Navigation */}
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-      {/* <LoadingScreen onComplete={() => setLoading(false)} /> */}
+      {/* Main Page Layout */}
+      <main className="relative z-10 w-full">
+        {/* Hero Section */}
+        <Hero />
 
-      {/* <Chatbot theme={theme} toggleTheme={toggleTheme} /> */}
+        <SectionDivider />
 
-      {/* <InteractiveSystem /> */}
+        {/* About Section */}
+        <AnimatedSection animation="fadeUp" delay={0.1}>
+          <About />
+        </AnimatedSection>
 
-      {/* <Navbar theme={theme} toggleTheme={toggleTheme} /> */}
+        <SectionDivider />
 
-      {/* <Hero /> */}
+        {/* Technical Proficiency Grid */}
+        <AnimatedSection animation="scaleUp" delay={0.1}>
+          <Skills />
+        </AnimatedSection>
 
-      {/* <SectionDivider /> */}
+        <SectionDivider />
 
-      {/* <AnimatedSection animation="fadeUp">
-        <About />
-      </AnimatedSection> */}
+        {/* Projects Showcase */}
+        <AnimatedSection animation="fadeUp" delay={0.1}>
+          <Projects />
+        </AnimatedSection>
 
-      {/* <AnimatedSection animation="fadeUp">
-        <Skills />
-      </AnimatedSection> */}
+        <SectionDivider />
 
-      {/* <AnimatedSection animation="fadeUp">
-        <Projects />
-      </AnimatedSection> */}
+        {/* Professional Timeline */}
+        <AnimatedSection animation="fadeLeft" delay={0.1}>
+          <Experience />
+        </AnimatedSection>
 
-      {/* <AnimatedSection animation="fadeUp">
-        <Experience />
-      </AnimatedSection> */}
+        <SectionDivider />
 
-      {/* <AnimatedSection animation="fadeUp">
-        <Education />
-      </AnimatedSection> */}
+        {/* Education & Certifications Column Grid */}
+        <AnimatedSection animation="fadeUp" delay={0.1}>
+          <section id="education" className="section py-24 relative">
+            <div className="absolute top-[30%] left-[-10%] w-[300px] h-[300px] bg-accent-glow rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+              <Education />
+              <Certifications />
+            </div>
+          </section>
+        </AnimatedSection>
 
-      {/* <AnimatedSection animation="fadeUp">
-        <Certifications />
-      </AnimatedSection> */}
+        <SectionDivider />
 
-      {/* <AnimatedSection animation="fadeUp">
-        <Achievements />
-      </AnimatedSection> */}
+        {/* Stats & Achievements */}
+        <AnimatedSection animation="scaleUp" delay={0.1}>
+          <Achievements />
+        </AnimatedSection>
 
-      {/* <AnimatedSection animation="fadeUp">
-        <Contact />
-      </AnimatedSection> */}
+        <SectionDivider />
 
-      {/* <Footer /> */}
-    </div>
+        {/* Contact Form Sheet */}
+        <AnimatedSection animation="fadeUp" delay={0.1}>
+          <Contact />
+        </AnimatedSection>
+      </main>
+
+      {/* Footer & Back to top button */}
+      <Footer />
+    </>
   );
 }
